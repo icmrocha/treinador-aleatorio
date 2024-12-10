@@ -3,36 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exercício Aleatório</title>
+    <title>Treinador Aleatório</title>
+    <!-- Fonte do Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Ícones do Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-O8CbeHBQZWz0xy5Xa+Ru04Xckr7EB5p0EdN7HwMrmrS6dPC9/9xf6SCU9DLGQ1akG6Nr4g62o3sEtLxoLkCjKw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
-    <h1>Treinador Aleatório</h1>
-    <div id="exercise">Clique para começar!</div>
-    <div id="timer">Timer: 00:00</div>
-    <button onclick="startExercise()">Novo Exercício</button>
-    <button onclick="skipExercise()">Pular</button>
+    <header>
+        <div class="logo">
+            <i class="fas fa-dumbbell"></i>
+            <span>Treinador Aleatório</span>
+        </div>
+    </header>
 
-    <div id="completed-list">Exercícios Concluídos:</div>
+    <div class="container">
+       
+        <div class="card">
+            <div id="exercise" class="exercise-title">Clique para começar!</div>
+            <div id="timer">Timer: 00:00</div>
+            <div class="button-group">
+                <button onclick="startExercise()" class="btn primary"><i class="fas fa-play"></i> Novo Exercício</button>
+                <button onclick="skipExercise()" class="btn secondary"><i class="fas fa-forward"></i> Pular</button>
+            </div>
+        </div>
 
-    <!-- Formulário para adicionar novos exercícios -->
-    <div id="new-exercise-form">
-        <h2>Adicionar Novo Exercício</h2>
-        <input type="text" id="newExerciseInput" placeholder="Nome do exercício">
-        <button onclick="addNewExercise()">Adicionar</button>
-    </div>
+        <div class="card">
+            <div id="completed-list">Exercícios Concluídos:</div>
+        </div>
 
-    <!-- Lista de exercícios disponíveis -->
-    <div id="available-exercises">
-        <h2>Exercícios Disponíveis</h2>
-        <div id="exercise-list"></div>
-    </div>
+        <div class="card" id="reset-section">
+            <h2>Resetar Estatísticas</h2>
+            <button onclick="resetStats()" class="btn reset"><i class="fas fa-redo-alt"></i> Resetar</button>
+            <br><br>
+            <h2>Resetar Lista de Exercícios</h2>
+            <button onclick="resetExerciseList()" class="btn reset"><i class="fas fa-redo-alt"></i> Resetar Lista</button>
+        </div>
+        
 
-    <!-- Seção para resetar estatísticas -->
-    <div id="reset-section">
-        <h2>Resetar Estatísticas</h2>
-        <button onclick="resetStats()">Resetar</button>
+        <div class="card" id="new-exercise-form">
+            <h2>Adicionar Novo Exercício</h2>
+            <div class="form-row">
+                <input type="text" id="newExerciseInput" placeholder="Nome do exercício">
+                <button onclick="addNewExercise()" class="btn add"><i class="fas fa-plus"></i> Adicionar</button>
+            </div>
+        </div>
+
+        <div class="card" id="available-exercises">
+            <h2>Exercícios Disponíveis</h2>
+            <div id="exercise-list"></div>
+        </div>
+
+
     </div>
 
     <script src="script.js"></script>

@@ -1,54 +1,219 @@
-
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    padding: 20px;
-    background-color: #f5f5f5;
-}
-#exercise {
-    font-size: 2em;
-    margin: 20px;
-}
-button {
-    padding: 10px 20px;
-    font-size: 1em;
-    margin: 10px;
-}
-#timer {
-    font-size: 1.5em;
-    margin: 10px;
+    margin: 0;
+    background: #f4f7f8;
+    font-family: "Roboto", sans-serif;
     color: #333;
 }
-#completed-list {
-    margin-top: 20px;
+
+header {
+    background: #2c3e50;
+    padding: 15px 0;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+header .logo {
+    display: inline-flex;
+    align-items: center;
+    color: #ecf0f1;
+    font-weight: 700;
+    font-size: 1.2em;
+}
+
+header .logo i {
+    margin-right: 10px;
+}
+
+.container {
+    max-width: 700px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+h1 {
+    text-align: center;
+    font-weight: 700;
+    color: #34495e;
+    margin-bottom: 30px;
+}
+
+.card {
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.exercise-title {
+    font-size: 2em;
+    font-weight: 500;
+    text-align: center;
+    margin: 20px 0;
+}
+
+#timer {
+    font-size: 3em;
+    margin-bottom: 20px;
+    text-align: center;
+    color: #555;
+}
+
+.button-group {
+    text-align: center;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 500;
+    border: none;
+    border-radius: 4px;
+    padding: 10px 15px;
+    margin: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+    color: #fff;
+    font-size: 0.95em;
+}
+
+.btn i {
+    margin-right: 8px;
+}
+
+.btn.primary {
+    background: #3498db;
+}
+
+.btn.primary:hover {
+    background: #2980b9;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.btn.secondary {
+    background: #7f8c8d;
+}
+
+.btn.secondary:hover {
+    background: #5f6f70;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.btn.add {
+    background: #27ae60;
+}
+
+.btn.add:hover {
+    background: #1e874b;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.btn.reset {
+    background: #f39c12;
+}
+
+.btn.reset:hover {
+    background: #d68910;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.form-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.form-row input {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
     font-size: 1em;
-    text-align: left;
 }
-#new-exercise-form {
-    margin-top: 30px;
+
+#completed-list,
+#exercise-list {
+    font-size: 0.95em;
+    line-height: 1.6;
 }
-#new-exercise-form input {
-    padding: 5px;
-    font-size: 1em;
+
+#available-exercises h2,
+#new-exercise-form h2,
+#reset-section h2 {
+    font-weight: 700;
+    margin-bottom: 15px;
+    font-size: 1.1em;
+    color: #34495e;
 }
-#new-exercise-form button {
-    padding: 5px 10px;
-    font-size: 1em;
-}
-#available-exercises {
-    margin-top: 30px;
-    text-align: left;
-}
-#available-exercises strong {
-    display: inline-block;
-    margin-bottom: 10px;
-}
+
 .exercise-item {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background: #f9fafa;
+    padding: 8px 10px;
+    border-radius: 4px;
     margin-bottom: 5px;
 }
-#reset-section {
-    margin-top: 30px;
+
+.exercise-item span {
+    font-size: 1em;
+    font-weight: 500;
+}
+
+.exercise-item button {
+    background: #c0392b;
+    font-size: 0.9em;
+    padding: 5px 10px;
+    margin-left: 5px;
+}
+
+.exercise-item button:hover {
+    background: #a93226;
+    box-shadow: none;
+    transition: none;
+}
+
+.exercise-item button:first-child {
+    background: #2980b9;
+}
+
+.exercise-item button:first-child:hover {
+    background: #2471a3;
+}
+
+@media (max-width: 600px) {
+    .container {
+        margin: 20px auto;
+        padding: 10px;
+    }
+
+    .exercise-title {
+        font-size: 1.6em;
+    }
+
+    .form-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .form-row input {
+        margin-bottom: 10px;
+    }
+
+    .exercise-item {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .exercise-item button {
+        margin-top: 5px;
+        width: 100%;
+    }
+
+    .button-group button {
+        width: 100%;
+        margin: 10px 0;
+    }
 }

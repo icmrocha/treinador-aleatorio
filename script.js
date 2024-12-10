@@ -1,13 +1,16 @@
 // Carrega dados do Local Storage ou inicializa
 let exercises = JSON.parse(localStorage.getItem("exercises")) || [
-    "Flexões",
-    "Agachamentos",
-    "Abdominais",
-    "Prancha",
-    "Burpees",
-    "Polichinelos",
-    "Corrida no lugar",
-    "Pular corda"
+    "15 Abdominais",
+    "Abdominais até a falha",
+    "30s Prancha",
+    "Prancha até a falha",
+    "15 Flexões",
+    "15 Agachamentos",
+    "15 Agachamentos com peso",
+    "30 Polichinelos",
+    "Alongamentos / Yoga",
+    "15 Rosca alternada com pesos",
+    "30s Corrida no Lugar"
 ];
 
 let exerciseCount = JSON.parse(localStorage.getItem("exerciseCount")) || {};
@@ -157,6 +160,43 @@ function resetStats() {
     saveData();
     updateCompletedList();
     alert("Estatísticas resetadas com sucesso!");
+}
+
+
+function resetExerciseList() {
+    // Remove apenas a lista de exercícios do Local Storage
+    localStorage.removeItem("exercises");
+    localStorage.removeItem("exerciseCount");
+
+    // Opcionalmente, remover as estatísticas totais também, se quiser:
+    // localStorage.removeItem("totalExercises");
+    // localStorage.removeItem("totalTime");
+
+    // Atualiza as variáveis no código:
+    exercises = [
+        "15 Abdominais",
+        "Abdominais até a falha",
+        "30s Prancha",
+        "Prancha até a falha",
+        "15 Flexões",
+        "15 Agachamentos",
+        "15 Agachamentos com peso",
+        "30 Polichinelos",
+        "Alongamentos / Yoga",
+        "15 Rosca alternada com pesos",
+        "30s Corrida no Lugar"
+    ];
+
+    // Reinicializa contadores
+    exerciseCount = {};
+    exercises.forEach(ex => exerciseCount[ex] = 0);
+    totalExercises = 0;
+    totalTime = 0;
+
+    saveData();         // Salva o novo estado no Local Storage
+    updateCompletedList(); // Atualiza a interface
+
+    alert("A lista de exercícios foi resetada para o padrão!");
 }
 
 // Salva dados no Local Storage

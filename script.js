@@ -1,5 +1,5 @@
-// Lista de exercícios favoritos
-const exercises = [
+// Carrega os dados do Local Storage (ou inicializa se for a primeira vez)
+let exercises = JSON.parse(localStorage.getItem("exercises")) || [
     "Flexões",
     "Agachamentos",
     "Abdominais",
@@ -10,12 +10,11 @@ const exercises = [
     "Pular corda"
 ];
 
-// Carrega os dados do Local Storage (ou inicializa se for a primeira vez)
 let exerciseCount = JSON.parse(localStorage.getItem("exerciseCount")) || {};
 let totalExercises = parseInt(localStorage.getItem("totalExercises")) || 0;
 let totalTime = parseInt(localStorage.getItem("totalTime")) || 0;
 
-// Inicializa contadores dos exercícios se não existirem no Local Storage
+// Inicializa contadores dos exercícios se não existirem
 exercises.forEach(exercise => {
     if (!exerciseCount[exercise]) {
         exerciseCount[exercise] = 0;
@@ -81,14 +80,36 @@ function updateCompletedList() {
     list.innerHTML += `Tempo total: ${totalMinutes} min ${totalSeconds} seg`;
 }
 
-// Salva os dados no Local Storage
+// Função para salvar dados no Local Storage
 function saveData() {
     localStorage.setItem("exerciseCount", JSON.stringify(exerciseCount));
     localStorage.setItem("totalExercises", totalExercises);
     localStorage.setItem("totalTime", totalTime);
+    localStorage.setItem("exercises", JSON.stringify(exercises));
 }
 
 // Carrega os dados ao inicializar a página
 window.onload = function() {
     updateCompletedList(); // Atualiza a lista ao carregar a página
 };
+
+// Adicionar novo exercício
+function addNewExercise() {
+    const input = document.getElementById("newExerciseInput");
+    const newExerciseName = input.value.trim();
+    if (newExerciseName !== "") {
+        // Verifica se já existe
+        if (!exercises.includes(newExerciseName)) {
+            exercises.push(newExerciseName);
+            exerciseCount[newExerciseName] = 0;
+            saveData();
+            updateCompletedList();
+            input.value = ""; // limpa o campo
+            alert(`${newExerciseName} adicionado com sucesso!`);
+        } else {
+            alert("Este exercício já existe na lista!");
+        }
+    } else {
+        alert("Por favor, insira um nome válido para o exercício.");
+    }
+}

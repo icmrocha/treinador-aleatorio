@@ -112,4 +112,6 @@ function addNewExercise() {
     } else {
         alert("Por favor, insira um nome válido para o exercício.");
     }
-}
+} 
+
+

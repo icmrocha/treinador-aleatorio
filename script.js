@@ -81,6 +81,7 @@ function updateCompletedList() {
     updateExerciseList();
 }
 
+
 // Atualiza a lista de exercícios disponíveis
 function updateExerciseList() {
     const exerciseListDiv = document.getElementById("exercise-list");
@@ -88,32 +89,50 @@ function updateExerciseList() {
     exercises.forEach(ex => {
         const div = document.createElement("div");
         div.className = "exercise-item";
-        div.innerHTML = `<span>${ex}</span> <button onclick="removeExercise('${ex}')">Remover</button>`;
+        // Adicionamos mais um botão "Atualizar"
+        div.innerHTML = `
+            <span>${ex}</span>
+            <div>
+                <button onclick="updateExercise('${ex}')">Atualizar</button>
+                <button onclick="removeExercise('${ex}')">Remover</button>
+            </div>
+        `;
         exerciseListDiv.appendChild(div);
     });
 }
 
-// Adicionar um novo exercício
-function addNewExercise() {
-    const input = document.getElementById("newExerciseInput");
-    const newExerciseName = input.value.trim();
-    if (newExerciseName !== "") {
-        if (!exercises.includes(newExerciseName)) {
-            exercises.push(newExerciseName);
-            exerciseCount[newExerciseName] = 0;
+// Função para atualizar nome de um exercício
+function updateExercise(exerciseName) {
+    const newName = prompt("Digite o novo nome para o exercício:", exerciseName);
+    if (newName && newName.trim() !== "") {
+        const trimmedName = newName.trim();
+
+        // Verifica se o exercício já existe
+        if (exercises.includes(trimmedName) && trimmedName !== exerciseName) {
+            alert("Já existe um exercício com esse nome!");
+            return;
+        }
+
+        // Encontra o índice do exercício atual
+        const index = exercises.indexOf(exerciseName);
+        if (index !== -1) {
+            // Atualiza o nome do exercício na lista
+            exercises[index] = trimmedName;
+
+            // Atualiza o objeto exerciseCount (transfere o contador)
+            exerciseCount[trimmedName] = exerciseCount[exerciseName];
+            delete exerciseCount[exerciseName];
+
             saveData();
             updateCompletedList();
-            input.value = "";
-            alert(`${newExerciseName} adicionado com sucesso!`);
-        } else {
-            alert("Este exercício já existe na lista!");
+            alert(`Exercício atualizado para: ${trimmedName}`);
         }
     } else {
-        alert("Por favor, insira um nome válido para o exercício.");
+        alert("Nome inválido! O exercício não foi atualizado.");
     }
 }
 
-// Remover um exercício
+// Função para remover um exercício
 function removeExercise(exerciseName) {
     const index = exercises.indexOf(exerciseName);
     if (index !== -1) {
@@ -124,6 +143,7 @@ function removeExercise(exerciseName) {
         alert(`${exerciseName} removido!`);
     }
 }
+
 
 // Resetar estatísticas
 function resetStats() {

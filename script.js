@@ -115,16 +115,28 @@ function addNewExercise() {
 
 // Remover um exercício
 function removeExercise(exerciseName) {
-    // Remove do array exercises
     const index = exercises.indexOf(exerciseName);
     if (index !== -1) {
         exercises.splice(index, 1);
-        // Remove do objeto exerciseCount
         delete exerciseCount[exerciseName];
         saveData();
         updateCompletedList();
         alert(`${exerciseName} removido!`);
     }
+}
+
+// Resetar estatísticas
+function resetStats() {
+    // Zera as estatísticas
+    totalExercises = 0;
+    totalTime = 0;
+    // Zera os contadores dos exercícios existentes
+    for (const ex of exercises) {
+        exerciseCount[ex] = 0;
+    }
+    saveData();
+    updateCompletedList();
+    alert("Estatísticas resetadas com sucesso!");
 }
 
 // Salva dados no Local Storage

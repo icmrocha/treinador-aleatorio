@@ -30,6 +30,31 @@
             font-size: 1em;
             text-align: left;
         }
+        #new-exercise-form {
+            margin-top: 30px;
+        }
+        #new-exercise-form input {
+            padding: 5px;
+            font-size: 1em;
+        }
+        #new-exercise-form button {
+            padding: 5px 10px;
+            font-size: 1em;
+        }
+        #available-exercises {
+            margin-top: 30px;
+            text-align: left;
+        }
+        #available-exercises strong {
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        .exercise-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 <body>
@@ -38,14 +63,20 @@
     <div id="timer">Timer: 00:00</div>
     <button onclick="startExercise()">Novo Exercício</button>
     <button onclick="skipExercise()">Pular</button>
-    <div id="completed-list">Exercícios Concluídos:</div>
 
+    <div id="completed-list">Exercícios Concluídos:</div>
 
     <!-- Formulário para adicionar novos exercícios -->
     <div id="new-exercise-form">
         <h2>Adicionar Novo Exercício</h2>
         <input type="text" id="newExerciseInput" placeholder="Nome do exercício">
         <button onclick="addNewExercise()">Adicionar</button>
+    </div>
+
+    <!-- Lista de exercícios disponíveis -->
+    <div id="available-exercises">
+        <h2>Exercícios Disponíveis</h2>
+        <div id="exercise-list"></div>
     </div>
 
     <script src="script.js"></script>
